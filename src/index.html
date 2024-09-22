@@ -9,18 +9,26 @@
 </head>
 
 <body>
-  <div class="container">
-    <input type="file" accept="application/pdf" id="file-select" />
-
-    <label for="action">Action: </label>
-    <select name="action" id="action">
-      <option value="rotate90">Rotate 90 degrees CW</option>
-      <option value="rotate180">Rotate 180 degrees</option>
-      <option value="rotate270">Rotate 90 degrees CCW</option>
-      <option value="pagenumbers">Add page numbers</option>
-    </select>
-
-    <button id="finish-button">Finish</button>
+  <fieldset class="container">
+    <legend>PDF Tools</legend>
+    <ol>
+      <li>
+        <label for="file-select">Select a PDF file: </label>
+        <input type="file" accept="application/pdf" id="file-select" />
+      </li>
+      <li>
+        <label for="action">Choose an action: </label>
+        <select name="action" id="action">
+          <option value="rotate90">Rotate 90 degrees CW</option>
+          <option value="rotate180">Rotate 180 degrees</option>
+          <option value="rotate270">Rotate 90 degrees CCW</option>
+          <option value="pagenumbers">Add page numbers</option>
+        </select>
+      </li>
+      <li>
+        <button id="finish-button">View result</button>
+      </li>
+    </ol>
   </div>
   <script type="module" src="main.ts"></script>
 </body>
