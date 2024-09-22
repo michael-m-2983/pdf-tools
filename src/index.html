@@ -5,22 +5,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PDF Tools</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
   <div class="container">
     <input type="file" accept="application/pdf" id="file-select" />
 
-    <div type="action-container">
-      <input type="radio" name="action" value="plus_90" id="plus_90" />
-      <label for="plus_90">90 degrees CW</label>
-
-      <input type="radio" name="action" value="minus_90" id="minus_90" />
-      <label for="minus_90">90 degrees CCW</label>
-
-      <input type="radio" name="action" value="180" id="180" />
-      <label for="180">180 degrees</label>
-    </div>
+    <label for="action">Action: </label>
+    <select name="action" id="action">
+      <option value="rotate90">Rotate 90 degrees CW</option>
+      <option value="rotate180">Rotate 180 degrees</option>
+      <option value="rotate270">Rotate 90 degrees CCW</option>
+    </select>
 
     <button id="finish-button">Finish</button>
   </div>
