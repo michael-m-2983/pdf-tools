@@ -1,3 +1,4 @@
+import download from 'downloadjs';
 import { PDFDocument, degrees } from 'pdf-lib'
 
 document.getElementById("finish-button")!.onclick = async function (_: MouseEvent) {
@@ -54,5 +55,8 @@ document.getElementById("finish-button")!.onclick = async function (_: MouseEven
 
   doc.setProducer("pdf-tools (https://github.com/michael-m-2983/pdf-tools)");
 
-  window.open(await doc.saveAsBase64({ dataUri: true }), "_blank")?.focus();
+  // The below code works on certain platforms, but not all of them. 
+  // window.open(await doc.saveAsBase64({ dataUri: true }), "_blank")?.focus();
+
+  download(await doc.save(), file.name, "application/pdf");
 }
