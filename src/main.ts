@@ -25,7 +25,12 @@ document.getElementById("finish-button")!.onclick = async function(_: MouseEvent
     case "rotate270":
       rotate(270);
       break;
+    case "pagenumbers":
+      doc.getPages().forEach((page, index) => {
+        page.drawText((index + 1).toString(), { x: 10, y: 10 });
+      });
+      break;
   }
-  
+
   window.open(await doc.saveAsBase64({dataUri: true}));
 }
