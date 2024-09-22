@@ -32,5 +32,5 @@ document.getElementById("finish-button")!.onclick = async function(_: MouseEvent
       break;
   }
 
-  window.open(await doc.saveAsBase64({dataUri: true}));
+  window.open(await doc.saveAsBase64({dataUri: true}), "_blank")?.focus();
 }
