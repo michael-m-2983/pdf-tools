@@ -12,7 +12,7 @@ document.getElementById("finish-button")!.onclick = async function (_: MouseEven
 
   const file: File = fileSelectElement.files!.item(0)!;
 
-  const doc = await PDFDocument.load(await file.arrayBuffer());
+  let doc = await PDFDocument.load(await file.arrayBuffer());
 
   const rotate = (deg: number) => doc.getPages().forEach(page => page.setRotation(degrees(deg)));
 
@@ -29,6 +29,12 @@ document.getElementById("finish-button")!.onclick = async function (_: MouseEven
     case "pagenumbers":
       doc.getPages().forEach((page, index) => {
         page.drawText((index + 1).toString(), { x: 10, y: 10 });
+      });
+      break;
+    case "reverse":
+      doc.getPages().forEach((page, index) => {
+        doc.removePage(index);
+        doc.insertPage(0, page);
       });
       break;
     case "metadata":
