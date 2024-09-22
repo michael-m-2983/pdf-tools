@@ -14,3 +14,10 @@
     /* Text style */
     line-height: 2.5rem;
 }
+
+#version-number {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+}

@@ -1,4 +1,4 @@
-import { PDFDocument, PDFPage, degrees } from 'pdf-lib'
+import { PDFDocument, degrees } from 'pdf-lib'
 
 document.getElementById("finish-button")!.onclick = async function (_: MouseEvent) {
   const fileSelectElement: HTMLInputElement = document.getElementById("file-select")! as HTMLInputElement;
