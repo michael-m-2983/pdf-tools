@@ -26,6 +26,12 @@ document.getElementById("finish-button")!.onclick = async function (_: MouseEven
     case "rotate270":
       rotate(270);
       break;
+    case "flipx":
+      doc.getPages().forEach(page => page.scale(-1, 1));
+      break;
+    case "flipy":
+      doc.getPages().forEach(page => page.scale(1, -1));
+      break;
     case "pagenumbers":
       doc.getPages().forEach((page, index) => {
         page.drawText((index + 1).toString(), { x: 10, y: 10 });
