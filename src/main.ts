@@ -5,15 +5,33 @@ document.getElementById("finish-button")!.onclick = async function (_: MouseEven
   const fileSelectElement: HTMLInputElement = document.getElementById("file-select")! as HTMLInputElement;
   const action: string = (document.getElementById("action") as HTMLInputElement).value;
 
-  if (fileSelectElement.files!.length != 1) {
-    alert("You must upload a single PDF file!");
+  if (fileSelectElement.files!.length <= 0) {
+    alert("You must upload at least one PDF file!");
     return;
   }
 
-  const file: File = fileSelectElement.files!.item(0)!;
+  for(let i = 0; i < fileSelectElement.files!.length; i++) {
+    const file: File = fileSelectElement.files!.item(i)!;
 
-  let doc = await PDFDocument.load(await file.arrayBuffer());
+    let doc = await PDFDocument.load(await file.arrayBuffer());
+    processDocument(doc, action);
 
+    doc.setProducer("pdf-tools (https://github.com/michael-m-2983/pdf-tools)");
+
+    // The below code works on certain platforms, but not all of them. 
+    // window.open(await doc.saveAsBase64({ dataUri: true }), "_blank")?.focus();
+
+    download(await doc.save(), file.name, "application/pdf");
+  }
+}
+
+/**
+ * Applies the given action to the given document.
+ * 
+ * @param doc The PDF
+ * @param action The string label for an action.
+ */
+function processDocument(doc: PDFDocument, action: string) {
   const rotate = (deg: number) => doc.getPages().forEach(page => page.setRotation(degrees(deg)));
 
   switch (action) {
@@ -64,11 +82,4 @@ document.getElementById("finish-button")!.onclick = async function (_: MouseEven
       });
       break;
   }
-
-  doc.setProducer("pdf-tools (https://github.com/michael-m-2983/pdf-tools)");
-
-  // The below code works on certain platforms, but not all of them. 
-  // window.open(await doc.saveAsBase64({ dataUri: true }), "_blank")?.focus();
-
-  download(await doc.save(), file.name, "application/pdf");
 }
