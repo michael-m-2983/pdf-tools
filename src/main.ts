@@ -10,6 +10,22 @@ document.getElementById("finish-button")!.onclick = async function (_: MouseEven
     return;
   }
 
+  if(action == "merge") {
+    const merged = await PDFDocument.create();
+
+    for(let i = 0; i < fileSelectElement.files!.length; i++) {
+      let doc = await PDFDocument.load(await (fileSelectElement.files!.item(i)!).arrayBuffer());
+
+      const copiedPages = await merged.copyPages(doc, doc.getPageIndices());
+      copiedPages.forEach((page) => merged.addPage(page));
+    }
+
+    merged.setProducer("pdf-tools (https://github.com/michael-m-2983/pdf-tools)");
+
+    download(await merged.save(), "merged.pdf", "application/pdf");
+    return;
+  }
+
   for(let i = 0; i < fileSelectElement.files!.length; i++) {
     const file: File = fileSelectElement.files!.item(i)!;
 
