@@ -1,0 +1,23 @@
+.container {
+    /* Sizing and Alignment */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -80%);
+    transform: translate(-50%, -80%);
+
+    max-width: max-content;
+
+    /* Shadow */
+    box-shadow: 0px 0px 36px 0px rgba(0,0,0,0.1);
+
+    /* Text style */
+    line-height: 2.5rem;
+}
+
+#version-number {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+}
