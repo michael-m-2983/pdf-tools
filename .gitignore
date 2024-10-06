@@ -26,4 +26,4 @@ dist-ssr
 *.sw?
 
 # Vite PWA
-src/dev-dist
+**/dev-dist

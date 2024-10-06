@@ -4,13 +4,6 @@ import { defineConfig } from "vite";
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  root: "src",
-  build: {
-    outDir: "../dist"
-  },
-  resolve: {
-    alias: { "/src": path.resolve(process.cwd(), "src") }
-  },
   base: "/pdf-tools/",
   plugins: [
     VitePWA({
@@ -19,7 +12,7 @@ export default defineConfig({
         theme_color: "#ffffff",
         icons: [
           {
-            src: "logo.svg",
+            src: "/pdf-tools/logo.svg",
             purpose: "any",
             sizes: "any",
             type: "image/svg+xml"
@@ -29,9 +22,8 @@ export default defineConfig({
       devOptions: {
         enabled: true
       },
-      srcDir: "src",
       base: "/pdf-tools/",
-      injectRegister: 'auto',
+      injectRegister: 'auto'
     })
   ]
 });
