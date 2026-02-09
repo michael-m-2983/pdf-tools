@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+env:
+  # Tell `vite.config.ts` that this is a github pages build
+  BUILD_MODE: github-pages
 
 jobs:
   build:
