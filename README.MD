@@ -28,3 +28,20 @@ npm install
 # Start a local development server
 npm run dev
 ```
+
+### Build configurations
+
+You can tell vite to build the project in one of three modes: `normal`, `github-pages`, or `offline-html`. Do this by setting the `BUILD_MODE` environment variable to your choice of build mode.
+
+| Mode           | Description                                                                                                                                         |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `normal`       | Builds the application like normal.                                                                                                                 |
+| `github-pages` | Builds the application but with a custom base path '/pdf-tools' for github pages.                                                                   |
+| `offline-html` | Builds the application into a single html file with [vite-plugin-singlefile](https://www.npmjs.com/package/vite-plugin-singlefile) for portability. |
+
+```bash
+# Command examples
+BUILD_MODE=normal       npm run build
+BUILD_MODE=github-pages npm run build
+BUILD_MODE=offline-html npm run build
+```
