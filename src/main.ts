@@ -1,5 +1,5 @@
 import download from 'downloadjs';
-import { PDFDocument, degrees } from 'pdf-lib'
+import { PDFDocument, degrees, StandardFonts } from 'pdf-lib'
 
 document.getElementById("finish-button")!.onclick = async function (_: MouseEvent) {
   const fileSelectElement: HTMLInputElement = document.getElementById("file-select")! as HTMLInputElement;
@@ -30,7 +30,7 @@ document.getElementById("finish-button")!.onclick = async function (_: MouseEven
     const file: File = fileSelectElement.files!.item(i)!;
 
     let doc = await PDFDocument.load(await file.arrayBuffer());
-    processDocument(doc, action);
+    await processDocument(doc, action);
 
     doc.setProducer("pdf-tools (https://github.com/michael-m-2983/pdf-tools)");
 
@@ -47,7 +47,7 @@ document.getElementById("finish-button")!.onclick = async function (_: MouseEven
  * @param doc The PDF
  * @param action The string label for an action.
  */
-function processDocument(doc: PDFDocument, action: string) {
+async function processDocument(doc: PDFDocument, action: string) {
   const rotate = (deg: number) => doc.getPages().forEach(page => page.setRotation(degrees(deg)));
 
   switch (action) {
@@ -97,5 +97,21 @@ function processDocument(doc: PDFDocument, action: string) {
         })
       });
       break;
+    case "watermark":
+      let text = prompt("Watermark text?") || "Watermark";
+      const font = await doc.embedFont(StandardFonts.TimesRoman);
+      doc.getPages().forEach(page => {
+				const { width, height } = page.getSize();
+				let textWidth = font.widthOfTextAtSize(text, 100);
+				page.drawText(text, {
+					x: (width / 2) - (textWidth / 4),
+					y: height / 2,
+          font: font,
+					size: 100,
+					rotate: degrees(45),
+					opacity: 0.75
+				});
+      });
+			break;
   }
 }
