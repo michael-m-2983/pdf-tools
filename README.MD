@@ -1,6 +1,6 @@
-<div style="text-align: center;">
+<p align="center">
     <img width="70" src="./public/logo.svg" />
-</div>
+</p>
 
 # pdf-tools
 
