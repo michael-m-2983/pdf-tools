@@ -1,3 +1,7 @@
+<div style="text-align: center;">
+    <img width="70" src="./public/logo.svg" />
+</div>
+
 # pdf-tools
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/michael-m-2983/pdf-tools/deploy.yml)
